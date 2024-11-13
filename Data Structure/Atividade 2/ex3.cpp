@@ -31,13 +31,14 @@ int main(){
     int matriz_transposta[columns][rows];
     for(int i=0;i<columns;i++){
         for(int j=0;j<rows;j++){
-            matriz_transposta[columns][rows] = matriz[rows][columns];
+            matriz_transposta[i][j] = matriz[j][i];
         }
     }
 
     //Printa matriz transposta
+    cout << "\n";
     for(int i=0;i<columns;i++){
-        cout << "\n" << "\n";
+        cout << "\n";
         for(int j=0;j<rows;j++){
             cout << matriz_transposta[i][j] << " ";
         }
