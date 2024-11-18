@@ -19,18 +19,34 @@ class Carros{
     }
 
     string get_marca(){
-      
+      return marca;
     }
     string get_modelo(){
-      
+      return modelo;
     }
     float get_valor(){
-      
+      return valor;
     }
     float get_km(){
-      
+      return km;
     }
     int get_combustivel(){
-      
+      return combustivel;
     }
 };
+
+int main(){
+    int opcao;
+    cout << "Sistema cadastro de veículos" << endl << endl;
+    cout << "1 - Adicionar novo carro" << endl;
+    cout << "2 - Buscar carro" << endl;
+    cin opcao;
+    
+    if (opcao == 1){
+        
+    }
+    if (opcao == 2){
+        
+    }
+    return 0;
+}
