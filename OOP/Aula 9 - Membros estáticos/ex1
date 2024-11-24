@@ -46,7 +46,7 @@ int main() {
         cin >> opcao;
         switch(opcao){
             case 1:
-                if (Carro::get_n_carros() < 2){
+                if (Carro::get_n_carros() < 10){
                     Carro carro;
                     carros[Carro::get_n_carros()].inserirDados();
                 }
