@@ -1,1 +1,119 @@
+#include <iostream>
+using namespace std;
 
+// Classe Carro
+class Carro {
+private:
+    char marca[50];
+    char modelo[50];
+    double valor;
+    double kmRodados;
+    char combustivel[20];
+    static int n_carros;
+
+public:
+    // Método para inserir os dados do carro
+    void inserirDados() {
+        cout << "Marca: ";
+        cin >> marca;
+        cout << "Modelo: ";
+        cin >> modelo;
+        cout << "Valor: ";
+        cin >> valor;
+        cout << "Quilometragem: ";
+        cin >> kmRodados;
+        cout << "Combustível: ";
+        cin >> combustivel;
+        n_carros = n_carros+1;
+    }
+
+    // Método para exibir os dados do carro
+
+    static int get_n_carros();
+
+    void exibirDados() {
+        cout << "Marca: " << marca << endl;
+        cout << "Modelo: " << modelo << endl;
+        cout << "Valor: R$ " << valor << endl;
+        cout << "Quilometragem: " << kmRodados << " km" << endl;
+        cout << "Combustível: " << combustivel << endl;
+        cout << "--------------------------" << endl;
+    }
+
+    // Métodos para busca
+    /**
+     * @param busca String a ser buscada
+     * @return retorna se foi encontrado
+     */
+    bool buscaPorMarcaOuModelo(const char* busca) {
+        return (compararStrings(marca, busca) || compararStrings(modelo, busca));
+    }
+
+    bool buscaPorValor(double maxValor) {
+        return valor <= maxValor;
+    }
+
+    bool buscaPorQuilometragem(double maxQuilometragem) {
+        return kmRodados <= maxQuilometragem;
+    }
+
+    bool buscaPorCombustivel(const char* tipoCombustivel) {
+        return compararStrings(combustivel, tipoCombustivel);
+    }
+
+private:
+    // Função auxiliar para comparar strings
+    bool compararStrings(const char* str1, const char* str2) {
+        int i = 0;
+        while (str1[i] != '\0' && str2[i] != '\0') {
+            if (str1[i] != str2[i]) {
+                return false;
+            }
+            i++;
+        }
+        return str1[i] == '\0' && str2[i] == '\0';
+    }
+};
+
+// Inicialização do atributo estático
+int Carro::n_carros = 0;
+
+// Definição do método estático
+int Carro::get_n_carros() {
+    return n_carros;
+}
+
+// Programa principal
+int main() {
+    Carro carros[10];
+    int opcao;
+    // Inserção de até 10 carros
+    while (1) {
+        cout << "Menu de interacoes: \n";
+        cout << "1- Cadastrar carro \n2- Consultar total \n3-Sair\n";
+        cin >> opcao;
+        switch(opcao){
+            case 1:
+                if (Carro::get_n_carros() < 2){
+                    Carro carro;
+                    carros[Carro::get_n_carros()].inserirDados();
+                }
+                else {
+                    cout << "Limite de carros cadastrados atingido!\n";
+                }   
+                break;
+
+            case 2:
+                cout << "Total de carros cadastrados: " << Carro::get_n_carros() << endl;
+                break;
+            case 3:
+                cout << "Encerrando sessao...";
+                return 0;
+                break;
+                
+            default:
+                cout << "Opção inválida. Tente novamente.\n";
+        }
+
+    }
+}
